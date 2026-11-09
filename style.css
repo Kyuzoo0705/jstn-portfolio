@@ -57,16 +57,22 @@ html {
     --hover: #D4A62F;
 }
 
+html,
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  box-sizing: border-box;
-  flex-direction: column;
-  background-color: var(--bg);
-  color: var(--text);
-  transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header .logo {
@@ -80,15 +86,17 @@ header .logo a {
 }
 
 header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 3px solid var(--surface);
-  z-index: 999;
-  position: sticky;
-  background: var(--bg);
-  top: 0;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-bottom: 3px solid var(--surface);
+    z-index: 999;
+    position: sticky;
+    background: var(--bg);
+    top: 0;
 }
 
 header ul {
@@ -118,11 +126,12 @@ header a:hover {
 }
 
 section {
-  width: 100%;
-  min-height: 100vh;
-  text-align: center;
-  position: relative;
-  scroll-margin-top: 80px;
+    width: 100%;
+    min-width: 0;
+    min-height: 100vh;
+    text-align: center;
+    position: relative;
+    scroll-margin-top: 80px;
 }
 
 .nav {
@@ -292,9 +301,9 @@ section {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* MOBILE NAVIGATION */
+/* MOBILE / TABLET NAVIGATION */
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
 
     header {
         padding: 10px 15px;
@@ -302,7 +311,62 @@ section {
     }
 
     header .logo {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        min-width: 0;
+    }
+
+    .hamburger {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+
+        transition: max-height 0.35s ease,
+                    opacity 0.3s ease,
+                    visibility 0.3s ease;
+    }
+
+    .nav.active {
+        max-height: 400px;
+        padding: 12px 15px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav li {
+        width: 100%;
+    }
+
+    .navBtn {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 12px;
+        margin: 0;
+        white-space: normal;
     }
 
     .theme-toggle {
@@ -314,72 +378,24 @@ section {
         display: none;
     }
 
-    .hamburger {
-        display: flex;
-        flex-shrink: 0;
-        z-index: 1001;
-    }
-
-    .nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-
-        margin: 0;
-        padding: 0 20px;
-
-        background: var(--bg-card);
-        border-bottom: 1px solid var(--border);
-
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        visibility: hidden;
-
-        transition: 0.35s ease;
-    }
-
-    .nav.active {
-        max-height: 450px;
-        padding: 15px 20px 25px;
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .nav ul {
-        flex-direction: column;
-        gap: 5px;
-        margin: 0;
-    }
-
-    .nav li {
-        width: 100%;
-        font-size: 1rem;
-    }
-
-    .navBtn {
-        width: 100%;
-        padding: 12px;
-        margin: 0;
-        border-radius: 8px;
-    }
-
-    .navBtn:hover {
-        background: var(--surface);
-        transform: translateX(5px);
-    }
-
     /* Profile */
 
     #Profile {
-        padding: 60px 6%;
+        width: 100%;
         min-height: 100vh;
+        padding: 60px 6%;
     }
 
     .profile-container {
-        grid-template-columns: 1fr;
+        width: 100%;
+        min-width: 0;
+        grid-template-columns: minmax(0, 1fr);
         gap: 40px;
+    }
+
+    .profile-info {
+        width: 100%;
+        min-width: 0;
     }
 
     .profile-visual {
@@ -393,6 +409,14 @@ section {
 
     .profile-info h1 {
         font-size: 32px;
+    }
+
+    #FieldExperience,
+    #Projects,
+    #ResearchAtSHS,
+    #SeminarAndTrainings {
+        width: 100%;
+        padding-inline: 6%;
     }
 }
 
@@ -451,12 +475,88 @@ header,
                 border-color 0.3s ease;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .theme-toggle span {
         display: none;
     }
 
     .theme-toggle {
         padding: 10px;
+    }
+}
+
+/* LAPTOP / SMALL DESKTOP - compact nav so links fit */
+
+@media (min-width: 1101px) and (max-width: 1500px) {
+
+    header .logo {
+        font-size: 1.6rem;
+    }
+
+    header a {
+        padding: 10px 12px;
+        margin: 0 4px;
+        gap: 10px;
+    }
+
+    header a:hover {
+        transform: scale(1.05);
+    }
+
+    .navBtn span {
+        font-size: 0.9rem;
+    }
+
+    .theme-toggle {
+        padding: 10px 12px;
+        gap: 6px;
+    }
+
+    .theme-toggle span {
+        font-size: 0.85rem;
+    }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 400px) {
+
+    header {
+        padding: 8px 10px;
+    }
+
+    header .logo {
+        font-size: 1.2rem;
+    }
+
+    #Profile {
+        padding: 50px 5%;
+    }
+
+    .profile-info h1 {
+        font-size: 26px;
+        margin: 14px 0;
+    }
+
+    .profile-info h2 {
+        font-size: 20px;
+    }
+
+    .profile-info p {
+        font-size: 14px;
+    }
+
+    .profile-visual img {
+        width: 170px;
+        height: 215px;
+    }
+
+    .profile-details {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-btn {
+        display: block;
+        text-align: center;
     }
 }

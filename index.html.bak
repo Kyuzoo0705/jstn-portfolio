@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Justin's Portfolio</title>
+  </head>
+  <body>
+  <header>
+    <div class="logo">
+        <a href="#">Portfolio</a>
+    </div>
+
+    <nav class="nav" id="navMenu">
+    <ul>
+        <li>
+            <a class="navBtn" href="#Profile">
+                <i data-lucide="user-round"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="navBtn" href="#FieldExperience">
+                <i data-lucide="briefcase-business"></i>
+                <span>Field Experience</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="navBtn" href="#Projects">
+                <i data-lucide="code-2"></i>
+                <span>Projects</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="navBtn" href="#ResearchAtSHS">
+                <i data-lucide="book-open"></i>
+                <span>Research At SHS</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="navBtn" href="#SeminarAndTrainings">
+                <i data-lucide="graduation-cap"></i>
+                <span>Seminar And Trainings</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<button class="theme-toggle" id="themeToggle"
+    aria-label="Switch color theme">
+    <i data-lucide="palette"></i>
+    <span>Gold Mode</span>
+</button>
+    <button class="hamburger" id="hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+    <section id="Profile">
+      <div class="profile-container">
+
+        <div class="profile-info">
+            <span class="section-label">01 / ABOUT ME</span>
+
+            <h1>A little about me.</h1>
+
+            <h2>Hello, I'm Jstn.Dev.</h2>
+
+          <p>
+    I am a passionate student eager to learn and explore
+    the world of technology. I enjoy programming, web
+    development, and continuously improving my skills
+    through practice and new experiences.
+</p>
+
+            <div class="profile-tags">
+                <span>Frontend Developer</span>
+                <span>Tech Enthusiast</span>
+            </div>
+
+            <div class="profile-details">
+                <div class="detail-card">
+                    <h3>Development</h3>
+                    <p>Learning and building websites.</p>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Creativity</h3>
+                    <p>Exploring UI and design.</p>
+                </div>
+            </div>
+
+            <a href="#Projects" class="profile-btn">
+    Explore My Work ↗
+</a>
+        </div>
+
+        <div class="profile-visual">
+            <img src="profile.png" alt="My Profile">
+            <span class="image-decoration"></span>
+        </div>
+
+    </div>
+    </section>
+    <section id="FieldExperience">
+      <h1>Field Experience</h1>
+    </section>
+    <section id="Projects">
+      <h1>Projects</h1>
+    </section>
+    <section id="ResearchAtSHS">
+      <h1>Research At SHS</h1>
+    </section>
+    <section id="SeminarAndTrainings">
+      <h1>Seminar And Trainings</h1>
+    </section>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    // HAMBURGER MENU
+
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+    const navLinks = document.querySelectorAll(".navBtn");
+
+    hamburger.addEventListener("click", () => {
+        const isOpen = navMenu.classList.toggle("active");
+
+        hamburger.classList.toggle("active", isOpen);
+        hamburger.setAttribute("aria-expanded", isOpen);
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
+            hamburger.setAttribute("aria-expanded", "false");
+        });
+    });
+
+
+    // THEME SELECTOR
+
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = themeToggle.querySelector("i");
+    const themeText = themeToggle.querySelector("span");
+
+    let currentTheme =
+        localStorage.getItem("portfolio-theme") || "purple";
+
+    function applyTheme(theme) {
+        currentTheme = theme;
+
+        document.documentElement.dataset.theme = theme;
+
+        themeIcon.setAttribute(
+            "data-lucide",
+            theme === "gold" ? "moon" : "palette"
+        );
+
+        themeText.textContent =
+            theme === "gold" ? "Purple Mode" : "Gold Mode";
+
+        localStorage.setItem("portfolio-theme", theme);
+
+        lucide.createIcons();
+    }
+
+    applyTheme(currentTheme);
+
+    themeToggle.addEventListener("click", () => {
+        applyTheme(
+            currentTheme === "purple" ? "gold" : "purple"
+        );
+    });
+
+    // INITIALIZE ICONS
+
+    lucide.createIcons();
+</script>
+</body>
+</html>
