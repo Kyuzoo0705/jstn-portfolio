@@ -56,7 +56,11 @@
         </li>
     </ul>
 </nav>
-
+<button class="theme-toggle" id="themeToggle"
+    aria-label="Switch color theme">
+    <i data-lucide="palette"></i>
+    <span>Gold Mode</span>
+</button>
     <button class="hamburger" id="hamburger"
         aria-label="Toggle navigation"
         aria-expanded="false">
@@ -75,14 +79,12 @@
 
             <h2>Hello, I'm Jstn.Dev.</h2>
 
-            <p>
-                <p>
+          <p>
     I am a passionate student eager to learn and explore
     the world of technology. I enjoy programming, web
     development, and continuously improving my skills
     through practice and new experiences.
 </p>
-            </p>
 
             <div class="profile-tags">
                 <span>Frontend Developer</span>
@@ -101,9 +103,9 @@
                 </div>
             </div>
 
-            <a href="#projects" class="profile-btn">
-                Explore My Work ↗
-            </a>
+            <a href="#Projects" class="profile-btn">
+    Explore My Work ↗
+</a>
         </div>
 
         <div class="profile-visual">
@@ -126,30 +128,69 @@
       <h1>Seminar And Trainings</h1>
     </section>
     <script src="https://unpkg.com/lucide@latest"></script>
-  </body>
-  <script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    // HAMBURGER MENU
+
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("navMenu");
     const navLinks = document.querySelectorAll(".navBtn");
 
     hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("active");
-        navMenu.classList.toggle("active");
+        const isOpen = navMenu.classList.toggle("active");
 
-        const isOpen = hamburger.classList.contains("active");
-
+        hamburger.classList.toggle("active", isOpen);
         hamburger.setAttribute("aria-expanded", isOpen);
     });
 
     navLinks.forEach(link => {
         link.addEventListener("click", () => {
-            hamburger.classList.remove("active");
             navMenu.classList.remove("active");
-
+            hamburger.classList.remove("active");
             hamburger.setAttribute("aria-expanded", "false");
         });
     });
-    
+
+
+    // THEME SELECTOR
+
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = themeToggle.querySelector("i");
+    const themeText = themeToggle.querySelector("span");
+
+    let currentTheme =
+        localStorage.getItem("portfolio-theme") || "purple";
+
+    function applyTheme(theme) {
+        currentTheme = theme;
+
+        document.documentElement.dataset.theme = theme;
+
+        themeIcon.setAttribute(
+            "data-lucide",
+            theme === "gold" ? "moon" : "palette"
+        );
+
+        themeText.textContent =
+            theme === "gold" ? "Purple Mode" : "Gold Mode";
+
+        localStorage.setItem("portfolio-theme", theme);
+
+        lucide.createIcons();
+    }
+
+    applyTheme(currentTheme);
+
+    themeToggle.addEventListener("click", () => {
+        applyTheme(
+            currentTheme === "purple" ? "gold" : "purple"
+        );
+    });
+
+    // INITIALIZE ICONS
+
     lucide.createIcons();
 </script>
+</body>
 </html>
