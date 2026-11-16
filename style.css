@@ -858,50 +858,14 @@ html[data-theme="gold"] .theme-toggle .ti-sun {
     transform: rotate(360deg) scale(1.2);
 }
 
-/* THEME SWITCH WAVE - soft-edged color wave from the toggle
-   that travels across the whole page */
+/* CIRCULAR THEME REVEAL (View Transitions API)
+   disables the default cross-fade so the clip-path
+   circle animation is the only transition */
 
-.theme-ripple {
-    position: fixed;
-    z-index: 2000;
-
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-
-    background: radial-gradient(
-        circle closest-side,
-        var(--ripple-color) 0%,
-        var(--ripple-color) 68%,
-        transparent 100%
-    );
-
-    pointer-events: none;
-
-    transform: translate(-50%, -50%) scale(0.1);
-    animation: theme-ripple-grow 0.75s ease-in forwards;
-}
-
-@keyframes theme-ripple-grow {
-    from {
-        transform: translate(-50%, -50%) scale(0.1);
-        opacity: 1;
-    }
-
-    80% {
-        opacity: 1;
-    }
-
-    to {
-        transform: translate(-50%, -50%) scale(var(--ripple-scale, 20));
-        opacity: 0;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .theme-ripple {
-        display: none;
-    }
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }
 
 body,
