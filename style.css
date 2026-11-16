@@ -885,8 +885,57 @@ header,
     }
 }
 
-/* SMALL PHONES */
+/* LANDSCAPE PHONES - compact header when viewport is short */
 
+@media (orientation: landscape) and (max-height: 500px) {
+
+    header {
+        margin-top: 8px;
+        top: 8px;
+        padding: 3px 6px 3px 12px;
+    }
+
+    header .logo {
+        font-size: 1.1rem;
+        padding-left: 4px;
+    }
+
+    .nav ul {
+        padding: 3px;
+    }
+
+    .navBtn {
+        padding: 5px 12px;
+        gap: 6px;
+    }
+
+    .navBtn i,
+    .navBtn svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    .navBtn span {
+        font-size: 0.78rem;
+    }
+
+    .theme-toggle {
+        width: 30px;
+        height: 30px;
+    }
+
+    .theme-toggle i,
+    .theme-toggle svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    section {
+        scroll-margin-top: 64px;
+    }
+}
+
+/* SMALL PHONES */
 @media (max-width: 400px) {
 
     header {
