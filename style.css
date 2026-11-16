@@ -858,32 +858,42 @@ html[data-theme="gold"] .theme-toggle .ti-sun {
     transform: rotate(360deg) scale(1.2);
 }
 
-/* THEME SWITCH RIPPLE - soft ring, not a full-screen wash */
+/* THEME SWITCH WAVE - soft-edged color wave from the toggle
+   that travels across the whole page */
 
 .theme-ripple {
     position: fixed;
     z-index: 2000;
 
-    width: 42px;
-    height: 42px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    border: 2px solid var(--accent);
-    background: transparent;
+
+    background: radial-gradient(
+        circle closest-side,
+        var(--ripple-color) 0%,
+        var(--ripple-color) 68%,
+        transparent 100%
+    );
 
     pointer-events: none;
 
-    transform: translate(-50%, -50%) scale(1);
-    animation: theme-ripple-grow 0.55s ease-out forwards;
+    transform: translate(-50%, -50%) scale(0.1);
+    animation: theme-ripple-grow 0.75s ease-in forwards;
 }
 
 @keyframes theme-ripple-grow {
     from {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(0.1);
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
     }
 
     to {
-        transform: translate(-50%, -50%) scale(4.5);
+        transform: translate(-50%, -50%) scale(var(--ripple-scale, 20));
         opacity: 0;
     }
 }
