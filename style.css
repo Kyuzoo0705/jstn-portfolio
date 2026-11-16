@@ -163,7 +163,15 @@ section > h2 {
     font-weight: 700;
     font-size: 38px;
     color: var(--text);
-    padding-top: 30vh;
+    margin: 8px 0 34px;
+}
+
+#FieldExperience,
+#Projects,
+#ResearchAtSHS,
+#SeminarAndTrainings {
+    min-height: 100vh;
+    padding: 100px 6% 70px;
 }
 
 /* CONTACT CHIPS */
@@ -217,6 +225,223 @@ footer p {
     color: var(--text-muted);
     font-size: 13px;
     margin: 0;
+}
+
+/* FIELD EXPERIENCE */
+
+.xp-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.xp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    border-radius: 14px;
+    padding: 22px 24px;
+}
+
+.xp-when {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    background: var(--surface);
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+}
+
+.xp-card h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    margin: 0 0 4px;
+}
+
+.xp-where {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.xp-card ul {
+    margin: 14px 0;
+    padding-left: 18px;
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.7;
+}
+
+.xp-learn {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin: 0;
+}
+
+.xp-learn strong {
+    color: var(--accent-soft);
+}
+
+/* PROJECTS */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 18px 22px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+.project-thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    aspect-ratio: 16 / 10;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-bottom: 16px;
+}
+
+.project-thumb i,
+.project-thumb svg {
+    width: 26px;
+    height: 26px;
+    color: var(--accent);
+}
+
+.project-card h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin: 0 0 14px;
+}
+
+.project-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.project-link:hover {
+    color: var(--text);
+}
+
+/* RESEARCH */
+
+.research-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 30px;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.research-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    margin: 0 0 14px;
+}
+
+.research-abstract,
+.research-role {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0 0 12px;
+}
+
+.research-abstract strong,
+.research-role strong,
+.seminar-take strong {
+    color: var(--accent-soft);
+}
+
+/* SEMINARS */
+
+.seminar-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.seminar-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    border-radius: 14px;
+    padding: 22px 24px;
+}
+
+.seminar-card h3 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    margin: 0 0 6px;
+}
+
+.seminar-meta {
+    display: block;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    margin-bottom: 10px;
+}
+
+.seminar-take {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 1100px) {
+
+    .xp-list,
+    .project-grid,
+    .seminar-list {
+        grid-template-columns: 1fr;
+    }
+
+    .research-card {
+        padding: 22px 20px;
+    }
 }
 
 .nav {
