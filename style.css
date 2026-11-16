@@ -37,24 +37,30 @@ html {
 
     --border: #38294F;
     --hover: #8B5FC7;
+
+    --font-display: 'Space Grotesk', poppins, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* BLACK & GOLD THEME */
+/* BLACK & GOLD THEME - LIGHT */
 
 [data-theme="gold"] {
-    --bg: #0D0B08;
-    --bg-card: #17130D;
-    --surface: #292013;
+    --bg: #F7F1E3;
+    --bg-card: #FFFDF6;
+    --surface: #EDE3CB;
 
     --primary: #B8860B;
-    --accent: #E5B94F;
-    --accent-soft: #F5DFA6;
+    --accent: #9A6E08;
+    --accent-soft: #6B4D06;
 
-    --text: #FFF9E9;
-    --text-muted: #B7AA91;
+    --text: #2B2110;
+    --text-muted: #6B5B3E;
 
-    --border: #49391C;
-    --hover: #D4A62F;
+    --border: #DFD1AE;
+    --hover: #8A6508;
+
+    --font-display: 'Space Grotesk', poppins, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 }
 
 html,
@@ -78,29 +84,50 @@ body {
 header .logo {
   display: flex;
   flex-direction: row;
-  font-size: 3rem;
+  font-size: 1.6rem;
+  padding-left: 10px;
 }
 
 header .logo a {
     margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
+header .logo a::after {
+    content: ".";
+    color: var(--accent);
+}
+
+/* FLOATING PILL HEADER */
+
 header {
-    width: 100%;
-    min-width: 0;
+    width: calc(100% - 32px);
+    margin: 14px auto 0;
+    padding: 8px 10px 8px 12px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
-    border-bottom: 3px solid var(--surface);
+    gap: 10px;
+
+    /* near-opaque instead of backdrop blur - blur on a sticky
+       element repaints every scroll frame and lags on mobile */
+    background: color-mix(in srgb, var(--bg-card) 96%, transparent);
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    box-shadow: 0 8px 24px #0000004d;
+
     z-index: 999;
     position: sticky;
-    background: var(--bg);
-    top: 0;
+    top: 14px;
 }
 
 header ul {
-gap: 5px;
+gap: 4px;
     padding: 0;
   display: flex;
 }
@@ -115,14 +142,11 @@ header a {
   display: flex;
   text-decoration: none;
   color: inherit;
-  margin: 0px 15px;
-  transition: transform 0.3s ease;
-  padding: 10px 25px;
-    gap: 15px;
-}
-
-header a:hover {
-  transform: scale(1.2);
+  margin: 0px;
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              transform 0.3s ease;
 }
 
 section {
@@ -131,13 +155,65 @@ section {
     min-height: 100vh;
     text-align: center;
     position: relative;
-    scroll-margin-top: 80px;
+    scroll-margin-top: 110px;
 }
 
 .nav {
-  
   margin-left: auto;
-    margin-right: 10px;
+  margin-right: 10px;
+}
+
+/* PILL NAVBAR */
+
+.nav ul {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px;
+  box-shadow: 0 4px 20px #00000040;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 9px 16px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+}
+
+/* lucide replaces <i data-lucide> with an <svg>, so target svg too */
+
+.navBtn i,
+.navBtn svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--accent);
+  transition: 0.3s ease;
+}
+
+.navBtn.active i,
+.navBtn.active svg {
+  color: var(--text);
+}
+
+.navBtn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.navBtn.active {
+  background: var(--primary);
+  color: var(--text);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--primary) 40%, transparent);
+}
+
+.navBtn.active i {
+  color: var(--text);
 }
 
 .image {
@@ -169,7 +245,13 @@ section {
     gap: 60px;
 }
 
+h1,
+h2 {
+    font-family: var(--font-display);
+}
+
 .section-label {
+    font-family: var(--font-mono);
     color: var(--accent);
     letter-spacing: 3px;
     font-size: 12px;
@@ -203,7 +285,10 @@ section {
     color: var(--accent-soft);
     padding: 8px 14px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .profile-details {
@@ -221,8 +306,11 @@ section {
 }
 
 .detail-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
     color: var(--accent);
     margin-bottom: 8px;
+    letter-spacing: 0.3px;
 }
 
 .detail-card p {
@@ -237,6 +325,8 @@ section {
     color: var(--text);
     text-decoration: none;
     border-radius: 8px;
+    font-family: var(--font-display);
+    font-weight: 600;
     transition: 0.3s;
 }
 
@@ -256,7 +346,7 @@ section {
     object-fit: cover;
     border-radius: 20px;
     border: 2px solid var(--primary);
-    box-shadow: 0 0 30px #7046A833;
+    box-shadow: 0 0 30px color-mix(in srgb, var(--primary) 20%, transparent);
 }
 
 /* HAMBURGER BUTTON */
@@ -322,13 +412,14 @@ section {
 
     .nav {
         position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        width: 100%;
+        top: calc(100% + 10px);
+        left: 10px;
+        right: 10px;
 
-        background: var(--bg-card);
-        border-bottom: 1px solid var(--border);
+        /* solid frosted-look panel, no blur (blur lags on mobile) */
+        background: color-mix(in srgb, var(--bg-card) 97%, transparent);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px #00000033;
 
         max-height: 0;
         overflow: hidden;
@@ -354,6 +445,13 @@ section {
         gap: 5px;
         margin: 0;
         padding: 0;
+
+        /* reset the desktop pill container so it doesn't
+           become a giant oblong inside the dropdown */
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
     }
 
     .nav li {
@@ -367,15 +465,6 @@ section {
         padding: 12px;
         margin: 0;
         white-space: normal;
-    }
-
-    .theme-toggle {
-        margin-left: auto;
-        padding: 10px;
-    }
-
-    .theme-toggle span {
-        display: none;
     }
 
     /* Profile */
@@ -420,49 +509,59 @@ section {
     }
 }
 
-.navBtn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-}
-
-.navBtn i {
-    width: 17px;
-    height: 17px;
-    color: var(--accent);
-    transition: 0.3s ease;
-}
-
-.navBtn:hover i {
-    color: var(--text);
-}
+/* THEME TOGGLE - icon-only round switch */
 
 .theme-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
 
-    padding: 10px 14px;
+    width: 42px;
+    height: 42px;
 
-    background: var(--bg-card);
+    background: var(--surface);
     color: var(--accent);
 
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 999px;
 
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* stack both icons in the same cell */
+
+.theme-toggle i,
+.theme-toggle svg {
+    grid-area: 1 / 1;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.5s ease;
+}
+
+/* dark (purple) -> show sun; light (gold) -> show moon */
+
+html[data-theme="purple"] .theme-toggle .ti-moon,
+html[data-theme="gold"] .theme-toggle .ti-sun {
+    display: none;
 }
 
 .theme-toggle:hover {
-    background: var(--surface);
     border-color: var(--accent);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
-.theme-toggle i {
-    width: 18px;
-    height: 18px;
+.theme-toggle:hover i,
+.theme-toggle:hover svg {
+    transform: rotate(40deg) scale(1.15);
+}
+
+.theme-toggle:active i,
+.theme-toggle:active svg {
+    transform: rotate(180deg);
 }
 
 body,
@@ -475,45 +574,27 @@ header,
                 border-color 0.3s ease;
 }
 
-@media (max-width: 1100px) {
-    .theme-toggle span {
-        display: none;
-    }
-
-    .theme-toggle {
-        padding: 10px;
-    }
-}
-
 /* LAPTOP / SMALL DESKTOP - compact nav so links fit */
 
 @media (min-width: 1101px) and (max-width: 1500px) {
 
-    header .logo {
-        font-size: 1.6rem;
-    }
-
     header a {
-        padding: 10px 12px;
-        margin: 0 4px;
-        gap: 10px;
+        padding: 8px 12px;
+        gap: 8px;
     }
 
-    header a:hover {
-        transform: scale(1.05);
+    .nav ul {
+        padding: 4px;
+    }
+
+    .navBtn i,
+    .navBtn svg {
+        width: 15px;
+        height: 15px;
     }
 
     .navBtn span {
         font-size: 0.9rem;
-    }
-
-    .theme-toggle {
-        padding: 10px 12px;
-        gap: 6px;
-    }
-
-    .theme-toggle span {
-        font-size: 0.85rem;
     }
 }
 

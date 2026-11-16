@@ -6,10 +6,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=2" />
+    <link rel="stylesheet" href="style.css?v=8" />
     <title>Justin's Portfolio</title>
   </head>
   <body>
@@ -58,8 +58,8 @@
 </nav>
 <button class="theme-toggle" id="themeToggle"
     aria-label="Switch color theme">
-    <i data-lucide="palette"></i>
-    <span>Gold Mode</span>
+    <i data-lucide="sun" class="ti-sun"></i>
+    <i data-lucide="moon" class="ti-moon"></i>
 </button>
     <button class="hamburger" id="hamburger"
         aria-label="Toggle navigation"
@@ -152,31 +152,56 @@
     });
 
 
+    // ACTIVE NAV PILL (click + scroll spy)
+
+    function setActiveLink(hash) {
+        navLinks.forEach(link => {
+            link.classList.toggle(
+                "active",
+                link.getAttribute("href") === hash
+            );
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            setActiveLink(link.getAttribute("href"));
+        });
+    });
+
+    const sections = document.querySelectorAll("section[id]");
+
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveLink("#" + entry.target.id);
+                }
+            });
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+    );
+
+    sections.forEach(section => observer.observe(section));
+
+
     // THEME SELECTOR
 
+    // Both sun/moon icons are rendered once by lucide.createIcons();
+    // which one is visible is decided purely by CSS on html[data-theme].
     const themeToggle = document.getElementById("themeToggle");
-    const themeIcon = themeToggle.querySelector("i");
-    const themeText = themeToggle.querySelector("span");
 
+    // No saved choice yet? Follow the visitor's system preference.
     let currentTheme =
-        localStorage.getItem("portfolio-theme") || "purple";
+        localStorage.getItem("portfolio-theme") ||
+        (window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "gold"
+            : "purple");
 
     function applyTheme(theme) {
         currentTheme = theme;
-
         document.documentElement.dataset.theme = theme;
-
-        themeIcon.setAttribute(
-            "data-lucide",
-            theme === "gold" ? "moon" : "palette"
-        );
-
-        themeText.textContent =
-            theme === "gold" ? "Purple Mode" : "Gold Mode";
-
         localStorage.setItem("portfolio-theme", theme);
-
-        lucide.createIcons();
     }
 
     applyTheme(currentTheme);
