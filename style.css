@@ -851,6 +851,51 @@ html[data-theme="gold"] .theme-toggle .ti-sun {
     transform: rotate(180deg);
 }
 
+/* one-shot spin on click */
+
+.theme-toggle.spin i,
+.theme-toggle.spin svg {
+    transform: rotate(360deg) scale(1.2);
+}
+
+/* THEME SWITCH RIPPLE */
+
+.theme-ripple {
+    position: fixed;
+    z-index: 2000;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%) scale(1);
+    animation: theme-ripple-grow 0.65s ease-out forwards;
+}
+
+@keyframes theme-ripple-grow {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(100);
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-ripple {
+        display: none;
+    }
+}
+
 body,
 header,
 .detail-card,
