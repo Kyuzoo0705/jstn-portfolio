@@ -15,7 +15,8 @@
    10. Research at SHS
    11. Seminars and Trainings
    12. Footer and back-to-top
-   13. Responsive layout
+   13. Motion and view transitions
+   14. Responsive layout
    ========================================================================== */
 
 /* 01. Design tokens ------------------------------------------------------- */
@@ -36,6 +37,7 @@
   --border: #38294f;
 
   --shadow-rgb: 0 0 0;
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
 
   --font-display: "Space Grotesk", "Poppins", sans-serif;
   --font-body: "Poppins", system-ui, sans-serif;
@@ -151,7 +153,7 @@ button {
   font-weight: 600;
   text-decoration: none;
   transform: translateY(-180%);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s var(--ease-out);
 }
 
 .skip-link:focus {
@@ -225,11 +227,10 @@ h3 {
   text-transform: uppercase;
 }
 
-.section-label::before {
-  content: "";
+.eyebrow-dot {
   width: 7px;
   height: 7px;
-  border-radius: 50%;
+  border-radius: 999px;
   background: var(--accent);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 15%, transparent);
 }
@@ -327,7 +328,9 @@ h3 {
   font-size: 1rem;
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease;
 }
 
 .navBtn i,
@@ -340,6 +343,7 @@ h3 {
   transition: color 0.3s ease;
 }
 
+.navBtn.active,
 .navBtn[aria-current="location"] {
   background: var(--primary);
   border-color: var(--accent);
@@ -347,6 +351,8 @@ h3 {
   box-shadow: 0 0 16px color-mix(in srgb, var(--primary) 40%, transparent);
 }
 
+.navBtn.active i,
+.navBtn.active svg,
 .navBtn[aria-current="location"] i,
 .navBtn[aria-current="location"] svg {
   color: var(--text);
@@ -362,6 +368,7 @@ h3 {
 /* 05. Theme toggle -------------------------------------------------------- */
 
 .theme-toggle {
+  position: relative;
   display: grid;
   flex-shrink: 0;
   place-items: center;
@@ -377,7 +384,12 @@ h3 {
 
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 0.3s ease, border-color 0.2s ease;
+  view-transition-name: theme-swap;
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.2s ease;
 }
 
 .theme-toggle i,
@@ -386,22 +398,40 @@ h3 {
   width: 19px;
   height: 19px;
   stroke-width: 2.1;
+  transition: opacity 0.45s var(--ease-out),
+              transform 0.55s var(--ease-out);
+}
+
+.theme-toggle .ti-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
 
 .theme-toggle .ti-moon {
-  display: none;
+  opacity: 0;
+  transform: rotate(-80deg) scale(0.6);
 }
 
 html[data-theme="gold"] .theme-toggle .ti-sun {
-  display: none;
+  opacity: 0;
+  transform: rotate(80deg) scale(0.6);
 }
 
 html[data-theme="gold"] .theme-toggle .ti-moon {
-  display: block;
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
 
-.theme-toggle:hover {
-  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+@media (hover: hover) {
+  .theme-toggle:hover {
+    border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 30%, transparent);
+    transform: scale(1.06);
+  }
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
 }
 
 /* Mobile menu button: three bars that become an X. */
@@ -558,7 +588,10 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   background: color-mix(in srgb, var(--bg-card) 86%, transparent);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  transition: border-color 0.2s ease;
+  transition: background-color 0.3s ease,
+              border-color 0.3s ease,
+              transform 0.3s var(--ease-out),
+              box-shadow 0.3s ease;
 }
 
 .skill-icon {
@@ -599,8 +632,12 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   letter-spacing: 0.2px;
 }
 
-.skill-chip:hover {
-  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+@media (hover: hover) {
+  .skill-chip:hover {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+    box-shadow: 0 14px 28px -20px color-mix(in srgb, var(--primary) 70%, transparent);
+    transform: translateY(-2px);
+  }
 }
 
 .profile-actions {
@@ -624,16 +661,27 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   letter-spacing: 0.2px;
   text-decoration: none;
   box-shadow: 0 16px 30px -18px color-mix(in srgb, var(--primary) 80%, transparent);
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease,
+              transform 0.3s var(--ease-out),
+              box-shadow 0.3s ease;
 }
 
 .profile-btn svg {
   width: 17px;
   height: 17px;
+  transition: transform 0.3s var(--ease-out);
 }
 
-.profile-btn:hover {
-  background: color-mix(in srgb, var(--primary) 78%, var(--bg));
+@media (hover: hover) {
+  .profile-btn:hover {
+    background: color-mix(in srgb, var(--primary) 78%, var(--bg));
+    box-shadow: 0 20px 34px -18px color-mix(in srgb, var(--primary) 90%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .profile-btn:hover svg {
+    transform: translateX(3px);
+  }
 }
 
 .profile-btn-ghost {
@@ -647,17 +695,22 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .profile-btn-ghost svg {
   width: 15px;
   height: 15px;
+  transition: transform 0.3s var(--ease-out);
 }
 
 .profile-btn-ghost:hover {
   border-color: var(--accent);
   color: var(--text);
+}
+
+.profile-btn-ghost:hover svg {
+  transform: translate(2px, -2px);
 }
 
 .profile-visual {
@@ -729,6 +782,13 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.7s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .profile-visual:hover .portrait-frame img {
+    transform: scale(1.04);
+  }
 }
 
 .visual-badge {
@@ -808,7 +868,9 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   text-decoration: none;
-  transition: border-color 0.2s ease;
+  transition: background-color 0.3s ease,
+              border-color 0.3s ease,
+              transform 0.3s var(--ease-out);
 }
 
 .contact-icon {
@@ -857,15 +919,20 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   height: 15px;
   margin-left: auto;
   color: var(--text-muted);
-  transition: color 0.2s ease;
+  transition: color 0.3s ease, transform 0.3s var(--ease-out);
 }
 
-.contact-list a:hover {
-  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
-}
+@media (hover: hover) {
+  .contact-list a:hover {
+    background: var(--bg-card);
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+    transform: translateY(-2px);
+  }
 
-.contact-list a:hover .contact-arrow {
-  color: var(--accent);
+  .contact-list a:hover .contact-arrow {
+    color: var(--accent);
+    transform: translate(2px, -2px);
+  }
 }
 
 /* 07. Shared card parts --------------------------------------------------- */
@@ -1001,7 +1068,9 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: 0 20px 44px -34px rgb(var(--shadow-rgb) / 0.7);
-  transition: border-color 0.2s ease;
+  transition: transform 0.3s var(--ease-out),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 .project-thumb {
@@ -1026,6 +1095,7 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  transition: transform 0.6s var(--ease-out);
 }
 
 .project-thumb.is-placeholder {
@@ -1108,8 +1178,16 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   color: var(--text);
 }
 
-.project-card:hover {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+@media (hover: hover) {
+  .project-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: 0 24px 50px -32px rgb(var(--shadow-rgb) / 0.85);
+    transform: translateY(-4px);
+  }
+
+  .project-card:hover .project-thumb img {
+    transform: scale(1.035);
+  }
 }
 
 /* 10. Research at SHS ----------------------------------------------------- */
@@ -1254,25 +1332,132 @@ footer {
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease,
+              visibility 0.3s ease,
+              transform 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 .to-top.visible {
   opacity: 1;
   visibility: visible;
+  transform: translateY(0);
 }
 
 .to-top i,
 .to-top svg {
   width: 20px;
   height: 20px;
+  transition: transform 0.3s ease;
 }
 
 .to-top:hover {
   border-color: var(--accent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
-/* 13. Responsive layout --------------------------------------------------- */
+.to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* 13. Motion and view transitions ----------------------------------------- */
+
+@keyframes enter-left {
+  from {
+    opacity: 0;
+    transform: translateX(-36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enter-right {
+  from {
+    opacity: 0;
+    transform: translateX(36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes theme-swap-out {
+  to {
+    opacity: 0;
+    transform: rotate(80deg) scale(0.9);
+  }
+}
+
+@keyframes theme-swap-in {
+  from {
+    opacity: 0;
+    transform: rotate(-80deg) scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .profile-info {
+    animation: enter-left 700ms var(--ease-out) both;
+  }
+
+  .profile-visual {
+    animation: enter-right 800ms var(--ease-out) 80ms both;
+  }
+
+  /* Cards start offset and settle when they enter the viewport. */
+  html.reveal-ready .reveal {
+    transition: opacity 0.7s var(--ease-out),
+                transform 0.7s var(--ease-out);
+  }
+
+  html.reveal-ready .reveal:not(.in-view) {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+
+  html.reveal-ready .reveal.from-right:not(.in-view) {
+    transform: translateX(32px);
+  }
+}
+
+/* The theme toggle grows into a circular reveal from its own position. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(theme-swap) {
+  animation: theme-swap-out 0.6s var(--ease-out) both;
+}
+
+::view-transition-new(theme-swap) {
+  animation: theme-swap-in 0.6s var(--ease-out) both;
+}
+
+html.vt .theme-toggle i,
+html.vt .theme-toggle svg {
+  transition: none;
+}
+
+.site-header,
+.visual-badge,
+.skill-icon,
+.contact-icon,
+.badge-icon,
+.contact-value {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* 14. Responsive layout --------------------------------------------------- */
 
 @media (max-width: 1500px) {
   .navBtn {

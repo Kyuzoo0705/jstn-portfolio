@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=28">
+  <link rel="stylesheet" href="css/style.css?v=27">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -71,7 +71,10 @@
     <section id="Profile">
       <div class="profile-container">
         <div class="profile-info">
-          <span class="section-label">01 / About me</span>
+          <span class="section-label">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            01 / About me
+          </span>
 
           <h1>Hello, I'm <span class="profile-name">Justin</span>.</h1>
 
@@ -181,7 +184,10 @@
 
     <section id="FieldExperience">
       <div class="section-head">
-        <span class="section-label">02 / Experience</span>
+        <span class="section-label">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          02 / Experience
+        </span>
         <h2>Field Experience</h2>
         <p class="section-sub">The roles I held, the work I handled, and the lessons I kept.</p>
       </div>
@@ -228,7 +234,10 @@
 
     <section id="Projects">
       <div class="section-head">
-        <span class="section-label">03 / Projects</span>
+        <span class="section-label">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          03 / Projects
+        </span>
         <h2>Projects</h2>
         <p class="section-sub">Pages I built and the choices behind them.</p>
       </div>
@@ -287,7 +296,10 @@
 
     <section id="ResearchAtSHS">
       <div class="section-head">
-        <span class="section-label">04 / Research</span>
+        <span class="section-label">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          04 / Research
+        </span>
         <h2>Research at SHS</h2>
         <p class="section-sub">The study I completed in Senior High School.</p>
       </div>
@@ -314,7 +326,10 @@
 
     <section id="SeminarsAndTrainings">
       <div class="section-head">
-        <span class="section-label">05 / Seminars &amp; Trainings</span>
+        <span class="section-label">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          05 / Seminars &amp; Trainings
+        </span>
         <h2>Seminars and Trainings</h2>
         <p class="section-sub">Workshops and sessions that added to my training.</p>
       </div>
@@ -356,14 +371,9 @@
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("navMenu");
     const navLinks = document.querySelectorAll(".navBtn");
-    const themeToggle = document.getElementById("themeToggle");
-    const themeColor = document.querySelector('meta[name="theme-color"]');
-    const systemLight = window.matchMedia("(prefers-color-scheme: light)");
-    const toTop = document.getElementById("toTop");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    /* Mobile menu */
-
-    function closeMenu(returnFocus) {
+    function closeMenu(returnFocus = false) {
       navMenu.classList.remove("active");
       hamburger.classList.remove("active");
       hamburger.setAttribute("aria-expanded", "false");
@@ -375,33 +385,23 @@
     }
 
     hamburger.addEventListener("click", () => {
-      const open = navMenu.classList.toggle("active");
+      const isOpen = navMenu.classList.toggle("active");
 
-      hamburger.classList.toggle("active", open);
-      hamburger.setAttribute("aria-expanded", String(open));
+      hamburger.classList.toggle("active", isOpen);
+      hamburger.setAttribute("aria-expanded", String(isOpen));
       hamburger.setAttribute(
         "aria-label",
-        open ? "Close navigation menu" : "Open navigation menu"
+        isOpen ? "Close navigation menu" : "Open navigation menu"
       );
     });
 
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && navMenu.classList.contains("active")) {
-        closeMenu(true);
-      }
-    });
-
-    document.addEventListener("click", event => {
-      if (navMenu.classList.contains("active") && !header.contains(event.target)) {
-        closeMenu();
-      }
-    });
-
-    /* Active section link */
-
     function setActiveLink(hash) {
       navLinks.forEach(link => {
-        if (link.getAttribute("href") === hash) {
+        const isActive = link.getAttribute("href") === hash;
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
           link.setAttribute("aria-current", "location");
         } else {
           link.removeAttribute("aria-current");
@@ -411,15 +411,35 @@
 
     navLinks.forEach(link => {
       link.addEventListener("click", () => {
+        const target = document.querySelector(link.getAttribute("href"));
+
         setActiveLink(link.getAttribute("href"));
         closeMenu();
+
+        if (target) {
+          target.setAttribute("tabindex", "-1");
+          target.focus({ preventScroll: true });
+        }
       });
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && navMenu.classList.contains("active")) {
+        closeMenu(true);
+      }
+    });
+
+    document.addEventListener("click", event => {
+      if (!navMenu.classList.contains("active")) return;
+      if (header.contains(event.target)) return;
+
+      closeMenu();
     });
 
     const sections = document.querySelectorAll("section[id]");
 
     if ("IntersectionObserver" in window) {
-      const watcher = new IntersectionObserver(
+      const observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -430,47 +450,138 @@
         { rootMargin: "-40% 0px -55% 0px" }
       );
 
-      sections.forEach(section => watcher.observe(section));
+      sections.forEach(section => observer.observe(section));
     }
 
-    /* Theme */
+    if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
+      const revealLeft = document.querySelectorAll(
+        ".section-head, " +
+        ".profile-contact, " +
+        ".seminar-card, " +
+        ".xp-card:nth-child(odd), " +
+        ".project-card:nth-child(odd)"
+      );
 
-    let theme =
-      localStorage.getItem("portfolio-theme") ||
-      (systemLight.matches ? "gold" : "purple");
+      const revealRight = document.querySelectorAll(
+        ".xp-card:nth-child(even), " +
+        ".project-card:nth-child(even), " +
+        ".research-card"
+      );
 
-    function applyTheme(name, save) {
-      theme = name;
-      document.documentElement.dataset.theme = name;
+      revealLeft.forEach(el => el.classList.add("reveal"));
+      revealRight.forEach(el => el.classList.add("reveal", "from-right"));
+
+      document.documentElement.classList.add("reveal-ready");
+
+      const revealer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add("in-view");
+            revealer.unobserve(entry.target);
+
+            setTimeout(() => {
+              entry.target.classList.remove("reveal", "from-right", "in-view");
+            }, 900);
+          });
+        },
+        { rootMargin: "0px 0px -10% 0px" }
+      );
+
+      document.querySelectorAll(".reveal").forEach(el => revealer.observe(el));
+    }
+
+    const themeToggle = document.getElementById("themeToggle");
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    const systemLight = window.matchMedia("(prefers-color-scheme: light)");
+    const storedTheme = localStorage.getItem("portfolio-theme");
+
+    let currentTheme =
+      storedTheme || (systemLight.matches ? "gold" : "purple");
+
+    function applyTheme(theme, persist = true) {
+      currentTheme = theme;
+      document.documentElement.dataset.theme = theme;
+
+      if (persist) {
+        localStorage.setItem("portfolio-theme", theme);
+      }
 
       themeToggle.setAttribute(
         "aria-label",
-        name === "purple" ? "Switch to light theme" : "Switch to dark theme"
+        theme === "purple" ? "Switch to light theme" : "Switch to dark theme"
       );
 
-      themeColor.setAttribute(
+      themeColorMeta.setAttribute(
         "content",
-        name === "purple" ? "#100b1d" : "#f7f1e3"
+        theme === "purple" ? "#100b1d" : "#f7f1e3"
       );
-
-      if (save) {
-        localStorage.setItem("portfolio-theme", name);
-      }
     }
 
-    applyTheme(theme, false);
+    applyTheme(currentTheme, false);
 
     themeToggle.addEventListener("click", () => {
-      applyTheme(theme === "purple" ? "gold" : "purple", true);
+      const next = currentTheme === "purple" ? "gold" : "purple";
+
+      switchTheme(next);
     });
+
+    function switchTheme(next) {
+      if (!document.startViewTransition || prefersReducedMotion.matches) {
+        applyTheme(next);
+        return;
+      }
+
+      const rect = themeToggle.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+
+      const reach = Math.hypot(
+        Math.max(cx, window.innerWidth - cx),
+        Math.max(cy, window.innerHeight - cy)
+      );
+
+      const root = document.documentElement;
+      const clearVt = () => root.classList.remove("vt");
+      root.classList.add("vt");
+
+      const viewTransition = document.startViewTransition(() =>
+        applyTheme(next)
+      );
+
+      viewTransition.finished.then(clearVt, clearVt);
+
+      viewTransition.ready
+        .then(() => {
+          root.animate(
+            {
+              clipPath: [
+                `circle(0px at ${cx}px ${cy}px)`,
+                `circle(${reach}px at ${cx}px ${cy}px)`
+              ]
+            },
+            {
+              duration: 650,
+              easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+              pseudoElement: "::view-transition-new(root)"
+            }
+          );
+        })
+        .catch(() => {});
+    }
 
     systemLight.addEventListener("change", event => {
-      if (!localStorage.getItem("portfolio-theme")) {
-        applyTheme(event.matches ? "gold" : "purple", false);
-      }
+      if (localStorage.getItem("portfolio-theme")) return;
+
+      applyTheme(event.matches ? "gold" : "purple", false);
     });
 
-    /* Back to top */
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+
+    const toTop = document.getElementById("toTop");
 
     function toggleToTop() {
       toTop.classList.toggle("visible", window.scrollY > 400);
@@ -480,14 +591,11 @@
     toggleToTop();
 
     toTop.addEventListener("click", () => {
-      window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+      });
     });
-
-    /* Icons load from a CDN, so check before using them. */
-
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
   </script>
 </body>
 </html>
