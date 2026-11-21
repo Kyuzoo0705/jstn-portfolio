@@ -1,200 +1,322 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css?v=16" />
-    <title>Justin's Portfolio</title>
-  </head>
-  <body>
-  <header>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Justin, a first-year Information Technology student at ISAT U who builds responsive pages with HTML and CSS.">
+  <meta name="theme-color" content="#100b1d">
+  <title>Justin | Student Developer Portfolio</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=27">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
     <div class="logo">
-        <a href="#">Portfolio</a>
+      <a href="#Profile" aria-label="Justin, back to top">Justin</a>
     </div>
 
-    <nav class="nav" id="navMenu">
-    <ul>
+    <nav class="nav" id="navMenu" aria-label="Main navigation">
+      <ul>
         <li>
-            <a class="navBtn" href="#Profile">
-                <i data-lucide="user-round"></i>
-                <span>Profile</span>
-            </a>
+          <a class="navBtn" href="#Profile" aria-current="location">
+            <i data-lucide="user-round" aria-hidden="true"></i>
+            <span>Profile</span>
+          </a>
         </li>
+        <li>
+          <a class="navBtn" href="#FieldExperience">
+            <i data-lucide="briefcase-business" aria-hidden="true"></i>
+            <span>Field Experience</span>
+          </a>
+        </li>
+        <li>
+          <a class="navBtn" href="#Projects">
+            <i data-lucide="code-2" aria-hidden="true"></i>
+            <span>Projects</span>
+          </a>
+        </li>
+        <li>
+          <a class="navBtn" href="#ResearchAtSHS">
+            <i data-lucide="book-open" aria-hidden="true"></i>
+            <span>Research at SHS</span>
+          </a>
+        </li>
+        <li>
+          <a class="navBtn" href="#SeminarsAndTrainings">
+            <i data-lucide="graduation-cap" aria-hidden="true"></i>
+            <span>Seminars &amp; Trainings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-        <li>
-            <a class="navBtn" href="#FieldExperience">
-                <i data-lucide="briefcase-business"></i>
-                <span>Field Experience</span>
-            </a>
-        </li>
-
-        <li>
-            <a class="navBtn" href="#Projects">
-                <i data-lucide="code-2"></i>
-                <span>Projects</span>
-            </a>
-        </li>
-
-        <li>
-            <a class="navBtn" href="#ResearchAtSHS">
-                <i data-lucide="book-open"></i>
-                <span>Research At SHS</span>
-            </a>
-        </li>
-
-        <li>
-            <a class="navBtn" href="#SeminarAndTrainings">
-                <i data-lucide="graduation-cap"></i>
-                <span>Seminar And Trainings</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-<button class="theme-toggle" id="themeToggle"
-    aria-label="Switch color theme">
-    <i data-lucide="sun" class="ti-sun"></i>
-    <i data-lucide="moon" class="ti-moon"></i>
-</button>
-    <button class="hamburger" id="hamburger"
-        aria-label="Toggle navigation"
-        aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
+      <i data-lucide="sun" class="ti-sun" aria-hidden="true"></i>
+      <i data-lucide="moon" class="ti-moon" aria-hidden="true"></i>
     </button>
-</header>
-    <main>
+
+    <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <main id="main-content" tabindex="-1">
     <section id="Profile">
       <div class="profile-container">
-
         <div class="profile-info">
-            <span class="section-label">01 / ABOUT ME</span>
+          <span class="section-label">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            01 / About me
+          </span>
 
-            <h1>A little about me.</h1>
+          <h1>Hello, I'm <span class="profile-name">Justin</span>.</h1>
 
-            <h2>Hello, I'm Jstn.Dev.</h2>
+          <p class="profile-lead">
+            I'm a first-year Information Technology student at ISAT U. I learn
+            web development by building pages with HTML and CSS, testing them
+            on my phone, and fixing what breaks.
+          </p>
 
-          <p>
-    I am a passionate student eager to learn and explore
-    the world of technology. I enjoy programming, web
-    development, and continuously improving my skills
-    through practice and new experiences.
-</p>
+          <div class="profile-skills">
+            <span class="profile-sub">What I work with</span>
 
             <div class="profile-tags">
-                <span>Frontend Developer</span>
-                <span>Tech Enthusiast</span>
+              <span class="skill-chip">
+                <span class="skill-icon"><i data-lucide="code-xml" aria-hidden="true"></i></span>
+                <span class="skill-text">
+                  <strong>HTML</strong>
+                  <small>Structure</small>
+                </span>
+              </span>
+
+              <span class="skill-chip">
+                <span class="skill-icon"><i data-lucide="palette" aria-hidden="true"></i></span>
+                <span class="skill-text">
+                  <strong>CSS</strong>
+                  <small>Styling</small>
+                </span>
+              </span>
             </div>
+          </div>
 
-            <div class="profile-details">
-                <div class="detail-card">
-                    <h3>Development</h3>
-                    <p>Learning and building websites.</p>
-                </div>
-
-                <div class="detail-card">
-                    <h3>Creativity</h3>
-                    <p>Exploring UI and design.</p>
-                </div>
-            </div>
-
-            <div class="profile-contact">
-                <a href="mailto:ferrarisjustin1@gmail.com">
-                    <i data-lucide="mail"></i>
-                    <span>ferrarisjustin1@gmail.com</span>
-                </a>
-                <a href="https://github.com/Kyuzoo0705" target="_blank" rel="noopener">
-                    <i data-lucide="github"></i>
-                    <span>github.com/Kyuzoo0705</span>
-                </a>
-            </div>
-
+          <div class="profile-actions">
             <a href="#Projects" class="profile-btn">
-    Explore My Work ↗
-</a>
+              <span>Explore my work</span>
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </a>
+
+            <a href="mailto:ferrarisjustin1@gmail.com" class="profile-btn-ghost">
+              <span>Get in touch</span>
+              <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
 
         <div class="profile-visual">
-            <img src="profile.png" alt="My Profile">
-            <span class="image-decoration"></span>
+          <span class="visual-glow" aria-hidden="true"></span>
+          <span class="visual-dots" aria-hidden="true"></span>
+          <span class="visual-ring" aria-hidden="true"></span>
+
+          <div class="portrait-frame">
+            <img src="images/profile.jpg" alt="Justin in a green graduation gown against a gray studio backdrop" width="680" height="850" decoding="async">
+          </div>
+
+          <div class="visual-badge">
+            <span class="badge-icon"><i data-lucide="graduation-cap" aria-hidden="true"></i></span>
+            <span class="badge-text">
+              <strong>Student developer</strong>
+              <span>HTML + CSS</span>
+            </span>
+          </div>
         </div>
 
-    </div>
-    </section>
-    <section id="FieldExperience">
-      <!-- PLACEHOLDER - replace with your real experience details -->
-      <span class="section-label">02 / EXPERIENCE</span>
-      <h2>Field Experience</h2>
+        <div class="profile-contact">
+          <span class="profile-sub">Contact</span>
 
+          <ul class="contact-list">
+            <li>
+              <a href="mailto:ferrarisjustin1@gmail.com">
+                <span class="contact-icon"><i data-lucide="mail" aria-hidden="true"></i></span>
+                <span class="contact-copy">
+                  <span class="contact-label">Email</span>
+                  <span class="contact-value">ferrarisjustin1@gmail.com</span>
+                </span>
+                <i data-lucide="arrow-up-right" class="contact-arrow" aria-hidden="true"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="tel:+639165721229">
+                <span class="contact-icon"><i data-lucide="phone" aria-hidden="true"></i></span>
+                <span class="contact-copy">
+                  <span class="contact-label">Phone</span>
+                  <span class="contact-value">0916 572 1229</span>
+                </span>
+                <i data-lucide="arrow-up-right" class="contact-arrow" aria-hidden="true"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://github.com/Kyuzoo0705" target="_blank" rel="noopener">
+                <span class="contact-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" stroke="none" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                  </svg>
+                </span>
+                <span class="contact-copy">
+                  <span class="contact-label">GitHub</span>
+                  <span class="contact-value">github.com/Kyuzoo0705</span>
+                </span>
+                <i data-lucide="arrow-up-right" class="contact-arrow" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="FieldExperience">
+      <div class="section-head">
+        <span class="section-label">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          02 / Experience
+        </span>
+        <h2>Field Experience</h2>
+        <p class="section-sub">The roles I held, the work I handled, and the lessons I kept.</p>
+      </div>
+
+      <!-- PLACEHOLDER: Field Experience. Replace the sample dates, places, and duties with real details. -->
       <div class="xp-list">
         <article class="xp-card">
-          <span class="xp-when">Sample · Jun 2025 – Mar 2026</span>
-          <h3>Student Assistant, ICT Office</h3>
-          <span class="xp-where">Sample City Senior High School</span>
+          <div class="card-head">
+            <span class="card-icon"><i data-lucide="briefcase-business" aria-hidden="true"></i></span>
+            <div class="card-head-text">
+              <span class="xp-when">Sample · Jun 2025 – Mar 2026</span>
+              <h3>Student Assistant, ICT Office</h3>
+              <span class="xp-where">Sample City Senior High School</span>
+            </div>
+          </div>
+
           <ul>
             <li>Helped maintain the computer laboratory and troubleshoot units.</li>
             <li>Assisted classmates during hands-on encoding and web activities.</li>
           </ul>
+
           <p class="xp-learn"><strong>What I learned:</strong> patience in troubleshooting, basic hardware care, and explaining technical steps simply.</p>
         </article>
 
         <article class="xp-card">
-          <span class="xp-when">Sample · Jan 2025 – May 2025</span>
-          <h3>Work Immersion Trainee</h3>
-          <span class="xp-where">Sample Local Business / Office</span>
+          <div class="card-head">
+            <span class="card-icon"><i data-lucide="users" aria-hidden="true"></i></span>
+            <div class="card-head-text">
+              <span class="xp-when">Sample · Jan 2025 – May 2025</span>
+              <h3>Work Immersion Trainee</h3>
+              <span class="xp-where">Sample Local Business / Office</span>
+            </div>
+          </div>
+
           <ul>
             <li>Encoded and organized records using spreadsheets.</li>
             <li>Observed how a real workplace manages files and schedules.</li>
           </ul>
+
           <p class="xp-learn"><strong>What I learned:</strong> responsibility, time management, and professional communication.</p>
         </article>
       </div>
     </section>
 
     <section id="Projects">
-      <!-- PLACEHOLDER - replace with your real projects + screenshots -->
-      <span class="section-label">03 / PROJECTS</span>
-      <h2>Projects</h2>
+      <div class="section-head">
+        <span class="section-label">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          03 / Projects
+        </span>
+        <h2>Projects</h2>
+        <p class="section-sub">Pages I built and the choices behind them.</p>
+      </div>
 
       <div class="project-grid">
         <article class="project-card">
           <div class="project-thumb">
-            <i data-lucide="image"></i>
-            <span>Add your screenshot here</span>
+            <img src="images/project-portfolio.jpg" alt="Home page of Justin's portfolio in the purple theme, showing the profile section and navigation" width="1280" height="800" loading="lazy" decoding="async">
           </div>
-          <h3>Sample Project One</h3>
-          <p>A short description of the project: what it does, the tools you used, and your role in building it.</p>
-          <a class="project-link" href="#">View Project ↗</a>
+
+          <div class="project-body">
+            <div class="card-head">
+              <span class="card-icon"><i data-lucide="layout-panel-left" aria-hidden="true"></i></span>
+              <div class="card-head-text">
+                <span class="card-kicker">Portfolio · 2026</span>
+                <h3>Personal Portfolio Website</h3>
+              </div>
+            </div>
+
+            <p>A five-section portfolio built with semantic HTML and an external stylesheet. It includes a mobile menu, a saved light and dark theme, scroll-aware navigation, and layouts that adapt from phone to desktop.</p>
+
+            <ul class="tag-list" aria-label="Tools used">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+
+            <a class="project-link" href="https://github.com/Kyuzoo0705/jstn-portfolio" target="_blank" rel="noopener">
+              <span>View repository</span>
+              <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </div>
         </article>
 
+        <!-- PLACEHOLDER: Projects. Add a screenshot, description, tools, and link for your second project. -->
         <article class="project-card">
-          <div class="project-thumb">
-            <i data-lucide="image"></i>
-            <span>Add your screenshot here</span>
+          <div class="project-thumb is-placeholder">
+            <i data-lucide="image" aria-hidden="true"></i>
+            <span>Screenshot coming</span>
           </div>
-          <h3>Sample Project Two</h3>
-          <p>A second project shows range: describe the problem it solves and what you learned from it.</p>
-          <a class="project-link" href="#">View Project ↗</a>
+
+          <div class="project-body">
+            <div class="card-head">
+              <span class="card-icon"><i data-lucide="code-2" aria-hidden="true"></i></span>
+              <div class="card-head-text">
+                <span class="card-kicker">Sample project</span>
+                <h3>Your Second Project</h3>
+              </div>
+            </div>
+
+            <p>Replace this card with a second project. Describe what it does, the problem it solves, the tools you used, and what you learned while building it.</p>
+          </div>
         </article>
       </div>
     </section>
 
     <section id="ResearchAtSHS">
-      <!-- PLACEHOLDER - replace with your real research details -->
-      <span class="section-label">04 / RESEARCH</span>
-      <h2>Research At SHS</h2>
+      <div class="section-head">
+        <span class="section-label">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          04 / Research
+        </span>
+        <h2>Research at SHS</h2>
+        <p class="section-sub">The study I completed in Senior High School.</p>
+      </div>
 
+      <!-- PLACEHOLDER: Research at SHS. Replace the title, abstract, and role with your study. -->
       <article class="research-card">
-        <h3>Sample Research Title Goes Here</h3>
+        <div class="card-head">
+          <span class="card-icon"><i data-lucide="book-open" aria-hidden="true"></i></span>
+          <div class="card-head-text">
+            <span class="card-kicker">Research · Senior High School</span>
+            <h3>Sample Research Title Goes Here</h3>
+          </div>
+        </div>
+
         <p class="research-abstract">
-          <strong>Abstract:</strong> One paragraph summarizing the study — the problem it looked into,
-          how the group gathered data, and what the results showed.
+          <strong>Abstract:</strong> One paragraph summarizing the study: the problem it looked into,
+          how you gathered data, and what the results showed.
         </p>
         <p class="research-role">
           <strong>My role:</strong> e.g., led data collection, encoded responses, and helped interpret the results.
@@ -202,190 +324,278 @@
       </article>
     </section>
 
-    <section id="SeminarAndTrainings">
-      <!-- PLACEHOLDER - replace with your real seminars / last SHS workshop -->
-      <span class="section-label">05 / SEMINARS &amp; TRAININGS</span>
-      <h2>Seminar And Trainings</h2>
+    <section id="SeminarsAndTrainings">
+      <div class="section-head">
+        <span class="section-label">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          05 / Seminars &amp; Trainings
+        </span>
+        <h2>Seminars and Trainings</h2>
+        <p class="section-sub">Workshops and sessions that added to my training.</p>
+      </div>
 
+      <!-- PLACEHOLDER: Seminars and Trainings. Add each seminar, or the last SHS workshop you attended. -->
       <div class="seminar-list">
         <article class="seminar-card">
-          <h3>Sample Seminar Title</h3>
-          <span class="seminar-meta">Sample Date · Sample Organizer</span>
+          <div class="card-head">
+            <span class="card-icon"><i data-lucide="presentation" aria-hidden="true"></i></span>
+            <div class="card-head-text">
+              <h3>Sample Seminar Title</h3>
+              <span class="seminar-meta">Sample date · Sample organizer</span>
+            </div>
+          </div>
+
           <p class="seminar-take"><strong>Key takeaway:</strong> one sentence on the most useful thing you took away from it.</p>
         </article>
       </div>
     </section>
-    </main>
+  </main>
 
-    <footer>
-        <p>© 2026 Justin · Built with HTML &amp; CSS</p>
-    </footer>
+  <footer>
+    <p class="footer-main">© 2026 Justin · Built with HTML, CSS, and JavaScript</p>
+    <p class="footer-credit">
+      Icons by <a href="https://lucide.dev" target="_blank" rel="noopener">Lucide</a>.
+      Typefaces <a href="https://fonts.google.com/specimen/Poppins" target="_blank" rel="noopener">Poppins</a>
+      and <a href="https://fonts.google.com/specimen/Space+Grotesk" target="_blank" rel="noopener">Space Grotesk</a>
+      served by Google Fonts.
+    </p>
+  </footer>
 
-    <button class="to-top" id="toTop" aria-label="Back to top">
-        <i data-lucide="arrow-up"></i>
-    </button>
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">
+    <i data-lucide="arrow-up" aria-hidden="true"></i>
+  </button>
+
   <script src="https://unpkg.com/lucide@latest"></script>
-
-<script>
-    // HAMBURGER MENU
-
+  <script>
+    const header = document.querySelector(".site-header");
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("navMenu");
     const navLinks = document.querySelectorAll(".navBtn");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function closeMenu(returnFocus = false) {
+      navMenu.classList.remove("active");
+      hamburger.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
+      hamburger.setAttribute("aria-label", "Open navigation menu");
+
+      if (returnFocus) {
+        hamburger.focus();
+      }
+    }
 
     hamburger.addEventListener("click", () => {
-        const isOpen = navMenu.classList.toggle("active");
+      const isOpen = navMenu.classList.toggle("active");
 
-        hamburger.classList.toggle("active", isOpen);
-        hamburger.setAttribute("aria-expanded", isOpen);
+      hamburger.classList.toggle("active", isOpen);
+      hamburger.setAttribute("aria-expanded", String(isOpen));
+      hamburger.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
     });
-
-    navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            navMenu.classList.remove("active");
-            hamburger.classList.remove("active");
-            hamburger.setAttribute("aria-expanded", "false");
-        });
-    });
-
-
-    // ACTIVE NAV PILL (click + scroll spy)
 
     function setActiveLink(hash) {
-        navLinks.forEach(link => {
-            link.classList.toggle(
-                "active",
-                link.getAttribute("href") === hash
-            );
-        });
+      navLinks.forEach(link => {
+        const isActive = link.getAttribute("href") === hash;
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
     }
 
     navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            setActiveLink(link.getAttribute("href"));
-        });
+      link.addEventListener("click", () => {
+        const target = document.querySelector(link.getAttribute("href"));
+
+        setActiveLink(link.getAttribute("href"));
+        closeMenu();
+
+        if (target) {
+          target.setAttribute("tabindex", "-1");
+          target.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && navMenu.classList.contains("active")) {
+        closeMenu(true);
+      }
+    });
+
+    document.addEventListener("click", event => {
+      if (!navMenu.classList.contains("active")) return;
+      if (header.contains(event.target)) return;
+
+      closeMenu();
     });
 
     const sections = document.querySelectorAll("section[id]");
 
-    const observer = new IntersectionObserver(
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
         entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setActiveLink("#" + entry.target.id);
-                }
-            });
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setActiveLink("#" + entry.target.id);
+            }
+          });
         },
         { rootMargin: "-40% 0px -55% 0px" }
-    );
+      );
 
-    sections.forEach(section => observer.observe(section));
-
-
-    // THEME SELECTOR
-
-    // Both sun/moon icons are rendered once by lucide.createIcons();
-    // which one is visible is decided purely by CSS on html[data-theme].
-    const themeToggle = document.getElementById("themeToggle");
-
-    // No saved choice yet? Follow the visitor's system preference.
-    let currentTheme =
-        localStorage.getItem("portfolio-theme") ||
-        (window.matchMedia("(prefers-color-scheme: light)").matches
-            ? "gold"
-            : "purple");
-
-    function applyTheme(theme) {
-        currentTheme = theme;
-        document.documentElement.dataset.theme = theme;
-        localStorage.setItem("portfolio-theme", theme);
+      sections.forEach(section => observer.observe(section));
     }
 
-    applyTheme(currentTheme);
+    if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
+      const revealLeft = document.querySelectorAll(
+        ".section-head, " +
+        ".profile-contact, " +
+        ".seminar-card, " +
+        ".xp-card:nth-child(odd), " +
+        ".project-card:nth-child(odd)"
+      );
+
+      const revealRight = document.querySelectorAll(
+        ".xp-card:nth-child(even), " +
+        ".project-card:nth-child(even), " +
+        ".research-card"
+      );
+
+      revealLeft.forEach(el => el.classList.add("reveal"));
+      revealRight.forEach(el => el.classList.add("reveal", "from-right"));
+
+      document.documentElement.classList.add("reveal-ready");
+
+      const revealer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add("in-view");
+            revealer.unobserve(entry.target);
+
+            setTimeout(() => {
+              entry.target.classList.remove("reveal", "from-right", "in-view");
+            }, 900);
+          });
+        },
+        { rootMargin: "0px 0px -10% 0px" }
+      );
+
+      document.querySelectorAll(".reveal").forEach(el => revealer.observe(el));
+    }
+
+    const themeToggle = document.getElementById("themeToggle");
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    const systemLight = window.matchMedia("(prefers-color-scheme: light)");
+    const storedTheme = localStorage.getItem("portfolio-theme");
+
+    let currentTheme =
+      storedTheme || (systemLight.matches ? "gold" : "purple");
+
+    function applyTheme(theme, persist = true) {
+      currentTheme = theme;
+      document.documentElement.dataset.theme = theme;
+
+      if (persist) {
+        localStorage.setItem("portfolio-theme", theme);
+      }
+
+      themeToggle.setAttribute(
+        "aria-label",
+        theme === "purple" ? "Switch to light theme" : "Switch to dark theme"
+      );
+
+      themeColorMeta.setAttribute(
+        "content",
+        theme === "purple" ? "#100b1d" : "#f7f1e3"
+      );
+    }
+
+    applyTheme(currentTheme, false);
 
     themeToggle.addEventListener("click", () => {
-        const next =
-            currentTheme === "purple" ? "gold" : "purple";
+      const next = currentTheme === "purple" ? "gold" : "purple";
 
-        switchTheme(next);
-
-        // spin the sun/moon icon once
-        themeToggle.classList.add("spin");
-        setTimeout(
-            () => themeToggle.classList.remove("spin"),
-            500
-        );
+      switchTheme(next);
     });
 
-    // smooth circular reveal via the View Transitions API:
-    // the new theme is unveiled through an expanding circle
-    // that starts at the toggle button
-
     function switchTheme(next) {
-        const reduceMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
+      if (!document.startViewTransition || prefersReducedMotion.matches) {
+        applyTheme(next);
+        return;
+      }
 
-        // graceful fallback: the CSS color transitions
-        // already animate the theme change smoothly
-        if (!document.startViewTransition || reduceMotion) {
-            applyTheme(next);
-            return;
-        }
+      const rect = themeToggle.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
 
-        const rect = themeToggle.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
+      const reach = Math.hypot(
+        Math.max(cx, window.innerWidth - cx),
+        Math.max(cy, window.innerHeight - cy)
+      );
 
-        // circle big enough to cover the farthest corner
-        const reach = Math.hypot(
-            Math.max(cx, window.innerWidth - cx),
-            Math.max(cy, window.innerHeight - cy)
-        );
+      const root = document.documentElement;
+      const clearVt = () => root.classList.remove("vt");
+      root.classList.add("vt");
 
-        const viewTransition = document.startViewTransition(() =>
-            applyTheme(next)
-        );
+      const viewTransition = document.startViewTransition(() =>
+        applyTheme(next)
+      );
 
-        viewTransition.ready.then(() => {
-            document.documentElement.animate(
-                {
-                    clipPath: [
-                        `circle(0px at ${cx}px ${cy}px)`,
-                        `circle(${reach}px at ${cx}px ${cy}px)`
-                    ]
-                },
-                {
-                    duration: 550,
-                    easing: "cubic-bezier(0.4, 0, 0.2, 1)",
-                    pseudoElement: "::view-transition-new(root)"
-                }
-            );
-        });
+      viewTransition.finished.then(clearVt, clearVt);
+
+      viewTransition.ready
+        .then(() => {
+          root.animate(
+            {
+              clipPath: [
+                `circle(0px at ${cx}px ${cy}px)`,
+                `circle(${reach}px at ${cx}px ${cy}px)`
+              ]
+            },
+            {
+              duration: 650,
+              easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+              pseudoElement: "::view-transition-new(root)"
+            }
+          );
+        })
+        .catch(() => {});
     }
 
-    // INITIALIZE ICONS
+    systemLight.addEventListener("change", event => {
+      if (localStorage.getItem("portfolio-theme")) return;
 
-    lucide.createIcons();
+      applyTheme(event.matches ? "gold" : "purple", false);
+    });
 
-    // BACK TO TOP
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
 
     const toTop = document.getElementById("toTop");
 
-    window.addEventListener(
-        "scroll",
-        () => {
-            toTop.classList.toggle(
-                "visible",
-                window.scrollY > 400
-            );
-        },
-        { passive: true }
-    );
+    function toggleToTop() {
+      toTop.classList.toggle("visible", window.scrollY > 400);
+    }
+
+    window.addEventListener("scroll", toggleToTop, { passive: true });
+    toggleToTop();
 
     toTop.addEventListener("click", () => {
-        window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+      });
     });
-</script>
+  </script>
 </body>
 </html>
