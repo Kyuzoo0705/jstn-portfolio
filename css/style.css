@@ -480,25 +480,6 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   background: var(--bg);
 }
 
-/* Soft accent light behind the hero. */
-#Profile::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      circle at 82% 22%,
-      color-mix(in srgb, var(--primary) 22%, transparent),
-      transparent 46%
-    ),
-    radial-gradient(
-      circle at 6% 88%,
-      color-mix(in srgb, var(--accent) 10%, transparent),
-      transparent 38%
-    );
-  pointer-events: none;
-}
-
 .profile-container {
   position: relative;
   z-index: 1;
@@ -721,18 +702,6 @@ html[data-theme="gold"] .theme-toggle .ti-moon {
   justify-content: center;
   padding: 24px 20px 42px;
   isolation: isolate;
-}
-
-.visual-glow {
-  position: absolute;
-  inset: 4% 0 10%;
-  z-index: -2;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 50% 46%,
-    color-mix(in srgb, var(--accent) 34%, transparent),
-    transparent 66%
-  );
 }
 
 .visual-dots {
@@ -1407,21 +1376,6 @@ footer {
 
   .profile-visual {
     animation: enter-right 800ms var(--ease-out) 80ms both;
-  }
-
-  /* Cards start offset and settle when they enter the viewport. */
-  html.reveal-ready .reveal {
-    transition: opacity 0.7s var(--ease-out),
-                transform 0.7s var(--ease-out);
-  }
-
-  html.reveal-ready .reveal:not(.in-view) {
-    opacity: 0;
-    transform: translateX(-32px);
-  }
-
-  html.reveal-ready .reveal.from-right:not(.in-view) {
-    transform: translateX(32px);
   }
 }
 

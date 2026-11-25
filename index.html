@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=27">
+  <link rel="stylesheet" href="css/style.css?v=28">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -120,12 +120,11 @@
         </div>
 
         <div class="profile-visual">
-          <span class="visual-glow" aria-hidden="true"></span>
           <span class="visual-dots" aria-hidden="true"></span>
           <span class="visual-ring" aria-hidden="true"></span>
 
           <div class="portrait-frame">
-            <img src="images/profile.jpg" alt="Justin in a green graduation gown against a gray studio backdrop" width="680" height="850" decoding="async">
+            <img src="images/profile.jpg" alt="profile" width="680" height="850" decoding="async">
           </div>
 
           <div class="visual-badge">
@@ -245,7 +244,7 @@
       <div class="project-grid">
         <article class="project-card">
           <div class="project-thumb">
-            <img src="images/project-portfolio.jpg" alt="Home page of Justin's portfolio in the purple theme, showing the profile section and navigation" width="1280" height="800" loading="lazy" decoding="async">
+            <img src="images/project-portfolio.jpg" alt="Home page of portfolio" width="1280" height="800" loading="lazy" decoding="async">
           </div>
 
           <div class="project-body">
@@ -451,45 +450,6 @@
       );
 
       sections.forEach(section => observer.observe(section));
-    }
-
-    if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
-      const revealLeft = document.querySelectorAll(
-        ".section-head, " +
-        ".profile-contact, " +
-        ".seminar-card, " +
-        ".xp-card:nth-child(odd), " +
-        ".project-card:nth-child(odd)"
-      );
-
-      const revealRight = document.querySelectorAll(
-        ".xp-card:nth-child(even), " +
-        ".project-card:nth-child(even), " +
-        ".research-card"
-      );
-
-      revealLeft.forEach(el => el.classList.add("reveal"));
-      revealRight.forEach(el => el.classList.add("reveal", "from-right"));
-
-      document.documentElement.classList.add("reveal-ready");
-
-      const revealer = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-
-            entry.target.classList.add("in-view");
-            revealer.unobserve(entry.target);
-
-            setTimeout(() => {
-              entry.target.classList.remove("reveal", "from-right", "in-view");
-            }, 900);
-          });
-        },
-        { rootMargin: "0px 0px -10% 0px" }
-      );
-
-      document.querySelectorAll(".reveal").forEach(el => revealer.observe(el));
     }
 
     const themeToggle = document.getElementById("themeToggle");
