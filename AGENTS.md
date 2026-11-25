@@ -5,7 +5,7 @@ Static single-page portfolio: HTML + CSS + inline JS. No build system, no packag
 ## Layout
 
 - `index.html` — all markup; all JavaScript lives inline in one `<script>` block at the bottom. Keep it that way: don't add a separate `.js` file or a bundler.
-- `css/style.css` — all styling, linked with a cache-busting query (`css/style.css?v=29`).
+- `css/style.css` — all styling, linked with a cache-busting query (`css/style.css?v=30`).
 - `images/` — portrait, project screenshot, and favicon. Use lowercase filenames with no spaces.
 - `README.md` is UTF-8.
 
